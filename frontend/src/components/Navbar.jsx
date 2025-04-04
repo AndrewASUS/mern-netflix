@@ -8,7 +8,7 @@ import { useContentStore } from "../store/content";
 const Navbar = () => {
 
   const [isMobileMenuOpen, setIsMobileOpen] = useState(false)
-  const { user, Logout } = useAuthStore()
+  const { user, logout } = useAuthStore()
 
 
   const toggleMobileMenu = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
               <Search className="size-6 cursor-ppointer"/>
             </Link>
             <img src={user.image} alt="Avatar" className="h-8 rounded cursor-pointer" />
-            <LogOut className="size-6 cursor-pointer" onClick={Logout}/>
+            <LogOut className="size-6 cursor-pointer" onClick={logout}/>
 
             <div className="sm:hidden">
               <Menu className="size-6 cursor-pointer" onClick={toggleMobileMenu} />
