@@ -11,9 +11,7 @@ const SignUpPage = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-
-
-  const { signup } = useAuthStore()
+  const { signup, isSigningUp } = useAuthStore()
 
 
   const handeSignUp = (event) => {
@@ -83,8 +81,10 @@ const SignUpPage = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
-            <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700" >
-              Sign Up
+            <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700" 
+            disabled={isSigningUp}
+            >
+              {isSigningUp ? "Loading..." : "Sign Up"}
             </button>
           </form>
           <div className="text-center text-gray-400">
