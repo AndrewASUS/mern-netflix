@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useContentStore } from "../store/content";
 import Navbar from "../components/Navbar";
 import { Search } from "lucide-react";
-import axios from "axios";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import axios from "axios";
 import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
-
+import { Link } from "react-router-dom";
 
 const SearchPage = () => {
 	const [activeTab, setActiveTab] = useState("movie");
@@ -15,15 +14,11 @@ const SearchPage = () => {
 	const [results, setResults] = useState([]);
 	const { setContentType } = useContentStore();
 
-
-
 	const handleTabClick = (tab) => {
 		setActiveTab(tab);
 		tab === "movie" ? setContentType("movie") : setContentType("tv");
 		setResults([]);
 	};
-
-
 
 	const handleSearch = async (e) => {
 		e.preventDefault();
@@ -39,7 +34,6 @@ const SearchPage = () => {
 		}
 	};
 
-  
 	return (
 		<div className='bg-black min-h-screen text-white'>
 			<Navbar />
@@ -101,9 +95,7 @@ const SearchPage = () => {
 									</div>
 								) : (
 									<Link
-										to={"/watch/" + result.id} onClickCapture={() =>{
-											setContentType(activeTab)
-										}}
+										to={"/watch/" + result.id}
 										onClick={() => {
 											setContentType(activeTab);
 										}}
@@ -124,5 +116,4 @@ const SearchPage = () => {
 		</div>
 	);
 };
-
 export default SearchPage;
