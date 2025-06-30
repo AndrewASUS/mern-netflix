@@ -10,13 +10,28 @@ import searchRoutes from "./routes/search.route.js";
 import { ENV_VARS } from "./config/envVars.js";
 import { connectDB } from "./config/db.js";
 import { protectRoute } from "./middleware/protectRoute.js";
+import job from "./config/cron.js"
+
 
 const app = express();
 
 const PORT = ENV_VARS.PORT;
 const __dirname = path.resolve();
 
+
+// Calling cron to send an GET request to render.com every 14 minutes 
+if (process.env.NODE_ENV === "production") job.start()
+
 app.use(express.json()); // will allow us to parse req.body
+
+
+// Check the health of your backend URL
+app.get("/api/health", (req, res) => {
+    res.status(200).json({ success: true })
+})
+
+
+
 app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
