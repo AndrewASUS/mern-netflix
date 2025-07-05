@@ -4,7 +4,7 @@ import https from "https"
 
 // Cron sends a GET request to render.con every 14 minutes
 
-const job = new cron.CronJob("*/14 * * * *", function () {
+const job = new cron.CronJob("*/10 * * * *", function () {
   https
     .get(process.env.API_URL, (res) => {
       if (res.statusCode === 200) console.log("GET request sent successfully")
